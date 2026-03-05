@@ -15,3 +15,6 @@ Route::get('/perkenalan', function () {
             <p>Saya siap belajar Laravel! 🚀</p>';
 
 });
+Route::get('/badrus-sholeh', function () {
+    return "Halo, saya Badrus Sholeh (Kolaborator)";
+});
