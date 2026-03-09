@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class ProfilController extends Controller
 {
+<<<<<<< HEAD
     public function index()
     {
         // Data organisasi
@@ -78,3 +79,7 @@ class ProfilController extends Controller
         return "Profil pengurus dengan NIM: " . $nim;
     }
 }
+=======
+    //
+}
+>>>>>>> a17358f (Menambahkan route tentang dan controller profil)
