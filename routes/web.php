@@ -21,18 +21,6 @@ Route::get('/bimoadi', function () {
     return "Halo, saya Bimoadi (Kolaborator)";
 });
 
-/* ROUTE NOVA */
-
-Route::get('/tentang', function () {
-    return "<h1>Tentang Sistem Administrasi ORMAWA</h1>
-            <p>Website ini dibuat untuk mengelola administrasi organisasi mahasiswa SAINTEK UNIPDU Jombang.</p>";
-});
-
-Route::get('/contact', function () {
-    return "<h1>Contact ORMAWA</h1>
-            <p>Email: ormawa@saintek.ac.id</p>";
-});
-
 /* ROUTE PROFIL */
 
 Route::get('/profil', [ProfilController::class, 'index']);
