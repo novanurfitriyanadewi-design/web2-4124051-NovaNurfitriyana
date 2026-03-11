@@ -34,8 +34,8 @@ Route::get('/dpm', function () {
 });
 
 Route::get('/himasi', function () {
-    return "<h1>Himpunan Mahasiswa Sistem Informasi (HIMA)</h1>
-            <p>HIMASI adalah organisasi mahasiswa yang berada di tingkat program studi sSistem Informasi.</p>";
+    return "<h1>Himpunan Mahasiswa Sistem Informasi (HIMASI)</h1>
+            <p>HIMASI adalah organisasi mahasiswa yang berada di tingkat program studi Sistem Informasi.</p>";
 });
 
 /* ROUTE PROFIL */
