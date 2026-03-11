@@ -18,12 +18,7 @@ Route::get('/badrus-sholeh', function () {
 });
 
 Route::get('/bimoadi', function () {
-<<<<<<< HEAD
  return "Halo, saya Bimoadi (Kolaborator)";
-=======
-
-    return "Halo, saya Bimoadi (Kolaborator)";
->>>>>>> c4fae4220c729d688ad05e30fecd3aedee916d5c
 });
 
 /* ROUTE ORMAWA */
