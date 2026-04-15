@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfilController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Route::get('/perkenalan', function () {
@@ -22,6 +22,10 @@ Route::get('/bimoadi', function () {
 });
 
 /* ROUTE ORMAWA */
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 
 Route::get('/bem', function () {
     return "<h1>Badan Eksekutif Mahasiswa (BEM)</h1>
