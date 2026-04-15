@@ -8,9 +8,9 @@
 
         {{-- Menu Navigasi --}}
         <div class="flex gap-6 text-sm">
-            <a href="/" class="hover:text-gray-300">Dashboard</a>
+            <a href="/surat-masuk" class="hover:text-gray-300">Surat Masuk</a>
+            <a href="/surat-keluar" class="hover:text-gray-300">Surat Keluar</a>
             <a href="/program" class="hover:text-gray-300">Program Kerja</a>
-            <a href="/pengurus" class="hover:text-gray-300">Pengurus</a>
             <a href="/laporan" class="hover:text-gray-300">Laporan</a>
         </div>
 

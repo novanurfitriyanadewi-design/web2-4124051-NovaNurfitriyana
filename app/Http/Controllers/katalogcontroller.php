@@ -6,47 +6,54 @@ use Illuminate\Http\Request;
 
 class KatalogController extends Controller
 {
-    public function index()
+    // 🔹 DATA (dipusatkan di 1 function)
+    private function dataProgram()
     {
-        $program = [
-            ['organisasi'=>'BEM FSAINTEK','nama'=>'Togetherness of Solidarity','anggaran'=>'Rp 1.500.000'],
-            ['organisasi'=>'BEM FSAINTEK','nama'=>'Tech E Football Competition','anggaran'=>'Rp 3.500.000'],
-            ['organisasi'=>'BEM FSAINTEK','nama'=>'SAINTEK Math Olimpiad','anggaran'=>'Rp 3.500.000'],
-            ['organisasi'=>'BEM FSAINTEK','nama'=>'Bakti Sosial','anggaran'=>'Rp 2.500.000'],
-            ['organisasi'=>'DPM FSAINTEK','nama'=>'Serap Aspirasi Mahasiswa','anggaran'=>'Rp 1.000.000'],
-            ['organisasi'=>'DPM FSAINTEK','nama'=>'Pelatihan Administrasi','anggaran'=>'Rp 2.000.000'],
-            ['organisasi'=>'DPM FSAINTEK','nama'=>'Konferensi Musyawarah Mahasiswa','anggaran'=>'Rp 2.500.000'],
-            ['organisasi'=>'DPM FSAINTEK','nama'=>'Paripurna','anggaran'=>'Rp 1.000.000'],
-            ['organisasi'=>'HIMASI','nama'=>'Code Mystery','anggaran'=>'Rp 2.000.000'],
-            ['organisasi'=>'HIMASI','nama'=>'hitc','anggaran'=>'Rp 1.000.000'],
-            ['organisasi'=>'HIMASI','nama'=>'Seminar IT','anggaran'=>'Rp 1.000.000'],
-            ['organisasi'=>'HIMASI','nama'=>'Webinar','anggaran'=>'Rp 2.000.000'] 
-        ];
+        return [
+            ['id'=>0,'organisasi'=>'BEM FSAINTEK','nama'=>'Togetherness of Solidarity'],
+            ['id'=>1,'organisasi'=>'BEM FSAINTEK','nama'=>'Tech E Football Competition'],
+            ['id'=>2,'organisasi'=>'BEM FSAINTEK','nama'=>'SAINTEK Math Olimpiad'],
+            ['id'=>3,'organisasi'=>'BEM FSAINTEK','nama'=>'Bakti Sosial'],
 
-        return view('program.index', compact('program'));
+            ['id'=>4,'organisasi'=>'DPM FSAINTEK','nama'=>'Serap Aspirasi Mahasiswa'],
+            ['id'=>5,'organisasi'=>'DPM FSAINTEK','nama'=>'Pelatihan Administrasi'],
+            ['id'=>6,'organisasi'=>'DPM FSAINTEK','nama'=>'Konferensi Musyawarah Mahasiswa'],
+            ['id'=>7,'organisasi'=>'DPM FSAINTEK','nama'=>'Paripurna'],
+
+            ['id'=>8,'organisasi'=>'HIMASI','nama'=>'Code Mystery'],
+            ['id'=>9,'organisasi'=>'HIMASI','nama'=>'HITC'],
+            ['id'=>10,'organisasi'=>'HIMASI','nama'=>'Seminar IT'],
+            ['id'=>11,'organisasi'=>'HIMASI','nama'=>'Webinar']
+        ];
     }
 
+    // 🔹 HALAMAN PILIH ORGANISASI (3 KOTAK)
+    public function index()
+    {
+        return view('program.index');
+    }
+
+    // 🔹 FILTER BERDASARKAN ORGANISASI
+    public function organisasi($nama)
+    {
+        $program = collect($this->dataProgram())
+            ->where('organisasi', $nama);
+
+        return view('program.list', [
+            'program' => $program,
+            'organisasi' => $nama
+        ]);
+    }
+
+    // 🔹 DETAIL PROGRAM
     public function show($id)
     {
-        $program = [
-             ['organisasi'=>'BEM FSAINTEK','nama'=>'Togetherness of Solidarity','anggaran'=>'Rp 1.500.000'],
-            ['organisasi'=>'BEM FSAINTEK','nama'=>'Tech E Football Competition','anggaran'=>'Rp 3.500.000'],
-            ['organisasi'=>'BEM FSAINTEK','nama'=>'SAINTEK Math Olimpiad','anggaran'=>'Rp 3.500.000'],
-            ['organisasi'=>'BEM FSAINTEK','nama'=>'Bakti Sosial','anggaran'=>'Rp 2.500.000'],
-            ['organisasi'=>'DPM FSAINTEK','nama'=>'Serap Aspirasi Mahasiswa','anggaran'=>'Rp 1.000.000'],
-            ['organisasi'=>'DPM FSAINTEK','nama'=>'Pelatihan Administrasi','anggaran'=>'Rp 2.000.000'],
-            ['organisasi'=>'DPM FSAINTEK','nama'=>'Konferensi Musyawarah Mahasiswa','anggaran'=>'Rp 2.500.000'],
-            ['organisasi'=>'DPM FSAINTEK','nama'=>'Paripurna','anggaran'=>'Rp 1.000.000'],
-            ['organisasi'=>'HIMASI','nama'=>'Code Mystery','anggaran'=>'Rp 2.000.000'],
-            ['organisasi'=>'HIMASI','nama'=>'hitc','anggaran'=>'Rp 3.000.000'],
-            ['organisasi'=>'HIMASI','nama'=>'Seminar IT','anggaran'=>'Rp 1.000.000'],
-            ['organisasi'=>'HIMASI','nama'=>'Webinar','anggaran'=>'Rp 2.000.000'] 
-        ];
+        $item = collect($this->dataProgram())->firstWhere('id', $id);
 
-        $item = $program[$id];
+        if (!$item) {
+            abort(404);
+        }
 
-        return "Organisasi: ".$item['organisasi'].
-               " | Program: ".$item['nama'].
-               " | Anggaran: ".$item['anggaran'];
+        return view('program.show', compact('item'));
     }
 }

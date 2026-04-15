@@ -1,65 +1,72 @@
 @extends('layouts.app')
 
-@section('title', 'Data Surat')
+@section('title', 'Produk')
 
 @section('content')
-<div class="max-w-6xl mx-auto px-4 py-8">
 
-    {{-- JUDUL --}}
-    <h1 class="text-2xl font-bold mb-6">Data Surat</h1>
+<div class="max-w-6xl mx-auto px-4 py-12">
 
-    {{-- TOMBOL TAMBAH --}}
-    <a href="/produk/create"
-       class="inline-block mb-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-        + Tambah Surat
-    </a>
+    <h1 class="text-3xl font-bold text-center mb-12">
+        
+    </h1>
 
-    {{-- TABEL --}}
-    <div class="bg-white rounded-xl shadow-md overflow-x-auto">
-        <table class="min-w-full border border-gray-200">
+    <div class="grid md:grid-cols-3 gap-6">
 
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="border px-4 py-2">No</th>
-                    <th class="border px-4 py-2">NOMOR Surat</th>
-                    <th class="border px-4 py-2 text-center">A</th>
-                    <th class="border px-4 py-2 text-center">B</th>
-                    <th class="border px-4 py-2">Kepada</th>
-                </tr>
-            </thead>
+        {{-- BEM --}}
+        <a href="/program/BEM FSAINTEK" class="group relative overflow-hidden rounded-xl">
+            
+            <img src="{{ asset('images/SMO.jpeg') }}" 
+                 class="w-full h-80 object-cover transition duration-500 group-hover:scale-110">
 
-            <tbody>
-                @forelse($surat as $i => $s)
-                <tr>
-                    <td class="border px-4 py-2 text-center">{{ $i+1 }}</td>
+            {{-- overlay --}}
+            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition"></div>
 
-                    <td class="border px-4 py-2">
-                        {{ $s['kode'] }}
-                    </td>
+            {{-- text --}}
+            <div class="absolute bottom-0 p-6 text-white">
+                <h2 class="text-2xl font-bold text-blue-400">BEM</h2>
+                <p class="text-sm opacity-90">
+                    Badan Eksekutif Mahasiswa sebagai penggerak utama kegiatan kampus
+                </p>
+            </div>
 
-                    <td class="border px-4 py-2 text-center">
-                        {{ $s['a'] ?? '-' }}
-                    </td>
+        </a>
 
-                    <td class="border px-4 py-2 text-center">
-                        {{ $s['b'] ?? '-' }}
-                    </td>
+        {{-- DPM --}}
+        <a href="/program/DPM FSAINTEK" class="group relative overflow-hidden rounded-xl">
+            
+            <img src="{{ asset('images/KMMM.jpeg') }}" 
+                 class="w-full h-80 object-cover transition duration-500 group-hover:scale-110">
 
-                    <td class="border px-4 py-2">
-                        {{ $s['kepada'] }}
-                    </td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="5" class="text-center py-4 text-gray-500">
-                        Belum ada data surat
-                    </td>
-                </tr>
-                @endforelse
-            </tbody>
+            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition"></div>
 
-        </table>
+            <div class="absolute bottom-0 p-6 text-white">
+                <h2 class="text-2xl font-bold text-green-400">DPM</h2>
+                <p class="text-sm opacity-90">
+                    Lembaga legislatif mahasiswa yang mengawasi organisasi
+                </p>
+            </div>
+
+        </a>
+
+        {{-- HIMASI --}}
+        <a href="/program/HIMASI" class="group relative overflow-hidden rounded-xl">
+            
+            <img src="{{ asset('images/HITC.jpeg') }}" 
+                 class="w-full h-80 object-cover transition duration-500 group-hover:scale-110">
+
+            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition"></div>
+
+            <div class="absolute bottom-0 p-6 text-white">
+                <h2 class="text-2xl font-bold text-purple-400">HIMASI</h2>
+                <p class="text-sm opacity-90">
+                    Fokus pada pengembangan akademik dan teknologi mahasiswa IT
+                </p>
+            </div>
+
+        </a>
+
     </div>
 
 </div>
+
 @endsection
