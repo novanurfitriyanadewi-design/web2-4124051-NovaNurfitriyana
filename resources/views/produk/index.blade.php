@@ -4,66 +4,57 @@
 
 @section('content')
 
-<div class="max-w-6xl mx-auto px-4 py-12">
+<div class="max-w-7xl mx-auto px-6 py-16">
 
-    <h1 class="text-3xl font-bold text-center mb-12">
-        
+    {{-- Judul --}}
+    <h1 class="text-4xl font-bold text-center mb-4 text-gray-800">
+        Organisasi Mahasiswa
     </h1>
+    <p class="text-center text-gray-500 mb-12">
+        Fakultas Sains dan Teknologi UNIPDU
+    </p>
 
-    <div class="grid md:grid-cols-3 gap-6">
+    <div class="grid md:grid-cols-3 gap-8">
 
-        {{-- BEM --}}
-        <a href="/program/BEM FSAINTEK" class="group relative overflow-hidden rounded-xl">
-            
-            <img src="{{ asset('images/SMO.jpeg') }}" 
-                 class="w-full h-80 object-cover transition duration-500 group-hover:scale-110">
+        @foreach([
+            ['nama'=>'BEM','desc'=>'Badan Eksekutif Mahasiswa sebagai penggerak utama kegiatan kampus'],
+            ['nama'=>'DPM','desc'=>'Lembaga legislatif mahasiswa yang mengawasi organisasi'],
+            ['nama'=>'HIMASI','desc'=>'Fokus pada pengembangan akademik dan teknologi mahasiswa IT'],
+        ] as $item)
 
-            {{-- overlay --}}
-            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition"></div>
+        <a href="/program/{{ $item['nama'] }}" 
+           class="relative bg-sky-700 text-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 group">
 
-            {{-- text --}}
-            <div class="absolute bottom-0 p-6 text-white">
-                <h2 class="text-2xl font-bold text-blue-400">BEM</h2>
-                <p class="text-sm opacity-90">
-                    Badan Eksekutif Mahasiswa sebagai penggerak utama kegiatan kampus
-                </p>
+            {{-- Label atas --}}
+            <div class="absolute -top-3 left-4 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded">
+                ORMAWA
             </div>
+
+            {{-- Judul --}}
+            <h2 class="text-xl font-bold mb-2 group-hover:underline">
+                {{ $item['nama'] }}
+            </h2>
+
+            {{-- Sub --}}
+            <p class="text-sm text-white/80 mb-6">
+                FAKULTAS SAINTEK
+            </p>
+
+            <hr class="border-white/30 mb-4">
+
+            {{-- Deskripsi --}}
+            <p class="text-sm mb-4 leading-relaxed">
+                {{ $item['desc'] }}
+            </p>
+
+            {{-- Button --}}
+            <span class="text-yellow-300 font-semibold text-sm group-hover:underline">
+                LIHAT SELENGKAPNYA →
+            </span>
 
         </a>
 
-        {{-- DPM --}}
-        <a href="/program/DPM FSAINTEK" class="group relative overflow-hidden rounded-xl">
-            
-            <img src="{{ asset('images/KMMM.jpeg') }}" 
-                 class="w-full h-80 object-cover transition duration-500 group-hover:scale-110">
-
-            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition"></div>
-
-            <div class="absolute bottom-0 p-6 text-white">
-                <h2 class="text-2xl font-bold text-green-400">DPM</h2>
-                <p class="text-sm opacity-90">
-                    Lembaga legislatif mahasiswa yang mengawasi organisasi
-                </p>
-            </div>
-
-        </a>
-
-        {{-- HIMASI --}}
-        <a href="/program/HIMASI" class="group relative overflow-hidden rounded-xl">
-            
-            <img src="{{ asset('images/HITC.jpeg') }}" 
-                 class="w-full h-80 object-cover transition duration-500 group-hover:scale-110">
-
-            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition"></div>
-
-            <div class="absolute bottom-0 p-6 text-white">
-                <h2 class="text-2xl font-bold text-purple-400">HIMASI</h2>
-                <p class="text-sm opacity-90">
-                    Fokus pada pengembangan akademik dan teknologi mahasiswa IT
-                </p>
-            </div>
-
-        </a>
+        @endforeach
 
     </div>
 

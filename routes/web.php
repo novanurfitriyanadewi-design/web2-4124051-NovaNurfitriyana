@@ -7,12 +7,12 @@ use App\Http\Controllers\OrmawaController;
 use App\Http\Controllers\SuratMasukController;
 use App\Http\Controllers\SuratKeluarController;
 
-/* ================= HOME ================= */
+/*HOME*/
 Route::get('/', function () {
     return view('welcome');
 });
 
-/* ================= PERKENALAN ================= */
+/*PERKENALAN*/
 Route::get('/perkenalan', function () {
     return '<h1>Halo! Nama saya Nova Nurfitriyana </h1>
             <p>NIM: 4124051 | Prodi: Sistem Informasi</p>
@@ -21,7 +21,7 @@ Route::get('/perkenalan', function () {
 
 /* KOLABORATOR  */
 Route::get('/badrus-sholeh', function () {
-    return "Halo, saya Badrus Sholeh (Kolaborator)";
+    return "Halo, saya M. Badrus Sholeh (Kolaborator)";
 });
 
 Route::get('/bimoadi', function () {

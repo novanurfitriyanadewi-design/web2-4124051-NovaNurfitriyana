@@ -61,10 +61,7 @@ class ProfilController extends Controller
                 'keahlian' => ['Administrasi','Microsoft Office','PHP']
             ],
             [
-<<<<<<< HEAD
-=======
 
->>>>>>> 31d453667821923741d3de6337f9adc701c5d9f5
                 'nama' => 'M. Badrus Sholeh',
                 'nim' => '4124008',
                 'jabatan' => 'Anggota DPM SAINTEK',
@@ -81,11 +78,7 @@ class ProfilController extends Controller
     {
         return "Profil pengurus dengan NIM: " . $nim;
     }
-<<<<<<< HEAD
-}
-=======
 
 
     
 }
->>>>>>> 31d453667821923741d3de6337f9adc701c5d9f5
