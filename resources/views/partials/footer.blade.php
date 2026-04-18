@@ -1,16 +1,15 @@
-<body class="flex flex-col min-h-screen">
+<html class="h-full">
+<body class="flex flex-col min-h-screen h-full">
 
-    <!-- Content -->
-    <main class="flex-1">
+    <main class="flex-1 min-h-screen pt-20">
         @yield('content')
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-800 text-white mt-12 py-4 px-4 text-center block">
-        <p class="text-sm text-slate-400">
-            &copy; {{ date('Y') }} Sistem Administrasi ORMAWA |
-            Kelompok 5
+    <footer class="bg-sky-800 text-white mt-auto py-6 text-center">
+        <p class="text-sm text-white/80">
+            &copy; {{ date('Y') }} Sistem Administrasi ORMAWA | Kelompok 5
         </p>
     </footer>
 
 </body>
+</html>

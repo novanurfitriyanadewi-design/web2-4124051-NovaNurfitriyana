@@ -7,17 +7,19 @@ use App\Http\Controllers\OrmawaController;
 use App\Http\Controllers\SuratMasukController;
 use App\Http\Controllers\SuratKeluarController;
 
-/*HOME*/
+/* HOME  */
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('beranda.index'); 
+})->name('home');
 
-/*PERKENALAN*/
+
+/* PERKENALAN  */
 Route::get('/perkenalan', function () {
-    return '<h1>Halo! Nama saya Nova Nurfitriyana </h1>
+    return '<h1>Halo! Nama saya Nova Nurfitriyana</h1>
             <p>NIM: 4124051 | Prodi: Sistem Informasi</p>
             <p>Saya siap belajar Laravel! 🚀</p>';
 });
+
 
 /* KOLABORATOR  */
 Route::get('/badrus-sholeh', function () {
@@ -28,30 +30,30 @@ Route::get('/bimoadi', function () {
     return "Halo, saya Bimoadi (Kolaborator)";
 });
 
-/* ORMAWA  */
-Route::get('/bem', fn() => "<h1>BEM</h1>");
-Route::get('/dpm', fn() => "<h1>DPM</h1>");
-Route::get('/himasi', fn() => "<h1>HIMASI</h1>");
 
-/* PRODUK ORMAWA  */
-Route::get('/produk', [OrmawaController::class, 'produk'])->name('produk');
+/* ORMAWA */
+Route::get('/ormawa', [OrmawaController::class, 'index'])
+    ->name('ormawa.index');
+Route::get('/ormawa/{nama}', [OrmawaController::class, 'show'])
+    ->name('ormawa.show');
 
-/*  PROFIL  */
-Route::get('/profil', [ProfilController::class, 'index'])->name('profil.index');
-Route::get('/profil/{id}', [ProfilController::class, 'show'])->name('profil.show');
 
-/* PROGRAM (KATALOG)  */
+/* PROFIL */
+Route::get('/profil', [ProfilController::class, 'index'])
+    ->name('profil.index');
+Route::get('/profil/{id}', [ProfilController::class, 'show'])
+    ->name('profil.show');
+
+
+/*  PROGRAM  */
 Route::prefix('program')->name('program.')->group(function () {
-
-    Route::get('/', [KatalogController::class, 'index'])->name('index');
-
-    Route::get('/{organisasi}', [KatalogController::class, 'organisasi'])->name('organisasi');
-
-    Route::get('/detail/{id}', [KatalogController::class, 'show'])->name('show');
+Route::get('/', [KatalogController::class, 'index'])
+        ->name('index');
+Route::get('/detail/{slug}', [KatalogController::class, 'show'])
+        ->name('show');
 });
 
-/* SURAT MASUK  */
-Route::resource('surat-masuk', SuratMasukController::class);
 
-/* SURAT KELUAR */
+/* SURAT */
+Route::resource('surat-masuk', SuratMasukController::class);
 Route::resource('surat-keluar', SuratKeluarController::class);

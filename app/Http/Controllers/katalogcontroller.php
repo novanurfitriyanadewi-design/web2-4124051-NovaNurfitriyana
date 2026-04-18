@@ -6,54 +6,50 @@ use Illuminate\Http\Request;
 
 class KatalogController extends Controller
 {
-    // 🔹 DATA (dipusatkan di 1 function)
+    // 🔹 DATA PROGRAM (pakai SLUG, bukan ID)
     private function dataProgram()
     {
         return [
-            ['id'=>0,'organisasi'=>'BEM FSAINTEK','nama'=>'Togetherness of Solidarity'],
-            ['id'=>1,'organisasi'=>'BEM FSAINTEK','nama'=>'Tech E Football Competition'],
-            ['id'=>2,'organisasi'=>'BEM FSAINTEK','nama'=>'SAINTEK Math Olimpiad'],
-            ['id'=>3,'organisasi'=>'BEM FSAINTEK','nama'=>'Bakti Sosial'],
-
-            ['id'=>4,'organisasi'=>'DPM FSAINTEK','nama'=>'Serap Aspirasi Mahasiswa'],
-            ['id'=>5,'organisasi'=>'DPM FSAINTEK','nama'=>'Pelatihan Administrasi'],
-            ['id'=>6,'organisasi'=>'DPM FSAINTEK','nama'=>'Konferensi Musyawarah Mahasiswa'],
-            ['id'=>7,'organisasi'=>'DPM FSAINTEK','nama'=>'Paripurna'],
-
-            ['id'=>8,'organisasi'=>'HIMASI','nama'=>'Code Mystery'],
-            ['id'=>9,'organisasi'=>'HIMASI','nama'=>'HITC'],
-            ['id'=>10,'organisasi'=>'HIMASI','nama'=>'Seminar IT'],
-            ['id'=>11,'organisasi'=>'HIMASI','nama'=>'Webinar']
+            'bem' => [
+                'organisasi' => 'BEM FSAINTEK',
+                'gambar' => 'images/bem.jpg',
+            ],
+            'dpm' => [
+                'organisasi' => 'DPM FSAINTEK',
+                'gambar' => 'images/dpm.jpg',
+            ],
+            'himasi' => [
+                'organisasi' => 'HIMASI',
+                'gambar' => 'images/himasi.jpg',
+            ],
         ];
     }
 
-    // 🔹 HALAMAN PILIH ORGANISASI (3 KOTAK)
+    // 🔹 HALAMAN LIST PROGRAM
     public function index()
     {
         return view('program.index');
     }
 
-    // 🔹 FILTER BERDASARKAN ORGANISASI
-    public function organisasi($nama)
+    // 🔹 FILTER ORGANISASI (OPTIONAL)
+    public function organisasi($organisasi)
     {
-        $program = collect($this->dataProgram())
-            ->where('organisasi', $nama);
-
         return view('program.list', [
-            'program' => $program,
-            'organisasi' => $nama
+            'organisasi' => $organisasi
         ]);
     }
 
-    // 🔹 DETAIL PROGRAM
-    public function show($id)
+    // 🔹 DETAIL PROGRAM (PAKAI SLUG)
+    public function show($slug)
     {
-        $item = collect($this->dataProgram())->firstWhere('id', $id);
+        $data = $this->dataProgram();
 
-        if (!$item) {
+        if (!isset($data[$slug])) {
             abort(404);
         }
 
-        return view('program.show', compact('item'));
+        return view('program.detail', [
+            'item' => $data[$slug]
+        ]);
     }
 }

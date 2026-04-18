@@ -6,13 +6,25 @@ use Illuminate\Http\Request;
 
 class OrmawaController extends Controller
 {
-    // HALAMAN PRODUK (INFO INSTANSI)
+    // HALAMAN LIST ORGANISASI
     public function produk()
     {
-        return view('produk.index');
+        return view('ormawa.index');
     }
 
+    // HALAMAN DETAIL ORGANISASI (BEM, DPM, HIMASI)
+    public function show($nama)
+    {
+        $data = ['bem', 'dpm', 'himasi'];
 
+        if (!in_array(strtolower($nama), $data)) {
+            abort(404);
+        }
+
+        return view('ormawa.detail', compact('nama'));
+    }
+
+    // HALAMAN PROGRAM
     public function program()
     {
         $program = [
@@ -30,6 +42,6 @@ class OrmawaController extends Controller
             ],
         ];
 
-        return view('program.index', compact('program'));
+        return view('ormawa.index', compact('ormawa'));
     }
 }
